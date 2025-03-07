@@ -18,7 +18,8 @@ public class Site extends Agent {
                 peers.add((String) args[i]);
             }
 
-            System.out.println("id: "+id+" initiator: "+ initiator+" peers: "+ peers);
+            System.out.println("id: "+id+" initiator: "
+                    + initiator+" peers: "+ peers);
         }
 
 
