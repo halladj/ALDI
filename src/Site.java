@@ -1,6 +1,11 @@
+import jade.core.AID;
 import jade.core.Agent;
+import jade.core.behaviours.CyclicBehaviour;
+import jade.lang.acl.ACLMessage;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Site extends Agent {
     int id;
@@ -29,12 +34,51 @@ public class Site extends Agent {
                 rdp = rdp.loadRdp(RdpPath);
                 rdp.displayRDP();
 
-                int id = rdp.hachage(rdp.getM0(), peers.size());
-                System.out.println("Agent-id: "+ id);
+                int siteId = rdp.hachage(rdp.getM0(), peers.size());
+                String agentName = peers.get(siteId-1);
+                System.out.println("Agent-id: "+ siteId+" Agent-Name: "+agentName);
+
+                if (!agentName.equals(  getLocalName())){
+                    //TODO: Send Marquage to the appropriate site.
+                    sendMarquage(agentName, rdp.getM0());
+                }
             }
+            //TODO: Consulter boite.
+            this.addBehaviour(new ConsulterBoite());
         }
 
 
+    }
+
+    public class ConsulterBoite extends CyclicBehaviour{
+
+        @Override
+        public void action() {
+            ACLMessage msg = receive();
+            if (msg != null){
+                try{
+                    int[] M = (int[]) msg.getContentObject();
+                    System.out.println("Agent: "+getLocalName()+" has received: "+
+                            Arrays.toString(M)+" from Agent: "+ msg.getSender());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    }
+
+    void sendMarquage(String agentName, int[] M){
+        ACLMessage msg = new ACLMessage(ACLMessage.INFORM);
+        msg.addReceiver(new AID(agentName, AID.ISLOCALNAME));
+
+        try{
+            msg.setContentObject(M);
+            send(msg);
+            System.out.println("Agent "+getLocalName()+ " Sent "+ Arrays.toString(M)
+                    +" to Agent: "+agentName);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
