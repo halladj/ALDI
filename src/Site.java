@@ -86,10 +86,10 @@ public class Site extends Agent {
         String[] commands = new String[3];
         String argument = "";
 
-        argument += "S1:Site(1,false,S1,S2,S3,S4,1erRdp.dat);";
-        argument += "S2:Site(2,false,S1,S2,S3,S4,1erRdp.dat);";
-        argument += "S3:Site(3,true,S1,S2,S3,S4,1erRdp.dat);";
-        argument += "S4:Site(4,false,S1,S2,S3,S4,1erRdp.dat);";
+        argument += "S0:Site(0,false,S0,S1,S2,S3,1erRdp.dat);";
+        argument += "S1:Site(1,false,S0,S1,S2,S3,1erRdp.dat);";
+        argument += "S2:Site(2,true,S0,S1,S2,S3,1erRdp.dat);";
+        argument += "S3:Site(3,false,S0,S1,S2,S3,1erRdp.dat);";
 
         commands[0]= "-cp";
         commands[1]="jade.boot";
