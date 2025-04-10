@@ -12,6 +12,7 @@ public class Rdp implements Serializable{
 	private int [][] Post;
 	private ArrayList<int[]> marquageList= new ArrayList<int[]>();
 
+	private  Graph graph = new Graph();
 	public Rdp(){
 	}
 
@@ -91,6 +92,28 @@ public class Rdp implements Serializable{
 
 	public void Generate_Graphe_Marquage_Centralisé(){
 		System.out.println("Generation du graphe de marquage centralisé");
+		this.addMarquage(M0);
+		for (int i = 0; i < this.marquageList.size() ; i++) {
+			int[] M = this.marquageList.get(i);
+			for (int t = 0; t < this.nbTransition; t++) {
+				if (this.t_franchissable(t, M) == 1){
+					int[] nM = this.succ(t,M);
+//					System.out.print(Arrays.toString(M)+" -> ");
+//					System.out.print((t+1));
+//					System.out.print(" -> "+Arrays.toString(nM)+"\n");
+					graph.addEdge(
+							Arrays.toString(M),
+							Arrays.toString(M),
+							String.valueOf(t)
+					);
+					if (this.searchMarquage(nM) == -1){
+						this.addMarquage(nM);
+					}
+				}
+			}
+		}
+		graph.printGraph();
+//		System.out.println(this.displayMarquageList());
 	}//Generer_Graphe_Marquage
 
 	public void Generate_Graphe_Marquage_Distribué(){
@@ -155,6 +178,8 @@ public class Rdp implements Serializable{
 		Rdp rdp = new Rdp(nbPlace, nbTransition, M0, Pre, Post);
 		rdp.displayRDP();
 		rdp.saveRdp(rdp, "1erRdp.dat");
-	
+
+		rdp.Generate_Graphe_Marquage_Centralisé();
+
 	}
 }

@@ -12,6 +12,7 @@ public class Site extends Agent {
     boolean initiator;
     String RdpPath;
     ArrayList<String> peers = new ArrayList<String>();
+    ArrayList<int[]> marquageList = new ArrayList<>();
 
     @Override
     protected void setup() {
@@ -59,7 +60,13 @@ public class Site extends Agent {
                 try{
                     int[] M = (int[]) msg.getContentObject();
                     System.out.println("Agent: "+getLocalName()+" has received: "+
-                            Arrays.toString(M)+" from Agent: "+ msg.getSender());
+                            Arrays.toString(M)+" from Agent: "+ msg.getSender().getLocalName());
+
+                    if (!marquageList.contains(M)){
+                        marquageList.add(M);
+                    }
+
+
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
