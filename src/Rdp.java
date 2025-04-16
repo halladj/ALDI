@@ -98,9 +98,6 @@ public class Rdp implements Serializable{
 			for (int t = 0; t < this.nbTransition; t++) {
 				if (this.t_franchissable(t, M) == 1){
 					int[] nM = this.succ(t,M);
-//					System.out.print(Arrays.toString(M)+" -> ");
-//					System.out.print((t+1));
-//					System.out.print(" -> "+Arrays.toString(nM)+"\n");
 					graph.addEdge(
 							Arrays.toString(M),
 							Arrays.toString(M),
