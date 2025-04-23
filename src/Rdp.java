@@ -6,13 +6,14 @@ import java.util.*;
 
 public class Rdp implements Serializable{
 	private int nbPlace;
-	private int nbTransition; 
+	public int nbTransition;
 	private int [] M0;
 	private int [][] Pre;
 	private int [][] Post;
-	private ArrayList<int[]> marquageList= new ArrayList<int[]>();
+	public ArrayList<int[]> marquageList= new ArrayList<int[]>();
 
-	private  Graph graph = new Graph();
+	public Graph graph = new Graph();
+
 	public Rdp(){
 	}
 
@@ -100,7 +101,7 @@ public class Rdp implements Serializable{
 					int[] nM = this.succ(t,M);
 					graph.addEdge(
 							Arrays.toString(M),
-							Arrays.toString(M),
+							Arrays.toString(nM),
 							String.valueOf(t)
 					);
 					if (this.searchMarquage(nM) == -1){
@@ -144,7 +145,7 @@ public class Rdp implements Serializable{
 			flotEcriture.writeObject(r);
 			flotEcriture.close();
 		} catch (IOException e) {
-			System.out.println("Erreur lors de la création du fichier :" + fileName);
+			System.out.println("Erreur lors de la création du fichier :" + fileName+e.toString());
 		}   
 	}
 
@@ -176,7 +177,7 @@ public class Rdp implements Serializable{
 		rdp.displayRDP();
 		rdp.saveRdp(rdp, "1erRdp.dat");
 
-		rdp.Generate_Graphe_Marquage_Centralisé();
+//		rdp.Generate_Graphe_Marquage_Centralisé();
 
 	}
 }

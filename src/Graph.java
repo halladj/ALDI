@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Graph {
+public class Graph implements Serializable{
     // Key-Value data structure, where
     // the key:String represents a source vertex.
     // and the Edge represents, the Label
@@ -35,7 +36,7 @@ public class Graph {
 }
 
 
-class Edge{
+class Edge implements Serializable{
     String label;
     String target;
 
