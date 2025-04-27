@@ -46,10 +46,8 @@ public class Site extends Agent {
         public void action() {
             int siteId = rdp.hachage(rdp.getM0(), peers.size());
             String agentName = peers.get(siteId);
-//            System.out.println("Agent-id: "+ siteId+" Agent-Name: "+agentName);
 
             if (!agentName.equals(  getLocalName())){
-                //TODO: Send Marquage to the appropriate site.
                 sendMarquage(agentName, rdp.getM0());
             }else{
                 ProcessMarking(rdp.getM0());
@@ -88,13 +86,6 @@ public class Site extends Agent {
             if (msg != null){
                 try{
                     int[] M = (int[]) msg.getContentObject();
-//                    System.out.println("Agent: "+getLocalName()+" has received: "+
-//                            Arrays.toString(M)+" from Agent: "+ msg.getSender().getLocalName());
-
-//                    if (!marquageList.contains(M)){
-//                        marquageList.add(M);
-//                    }
-
                     ProcessMarking(M);
 
                 } catch (Exception e) {
@@ -111,8 +102,6 @@ public class Site extends Agent {
         try{
             msg.setContentObject(M);
             send(msg);
-//            System.out.println("Agent "+getLocalName()+ " Sent "+ Arrays.toString(M)
-//                    +" to Agent: "+agentName);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
