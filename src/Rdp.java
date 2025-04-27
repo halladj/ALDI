@@ -167,26 +167,26 @@ public class Rdp implements Serializable{
 	}
 
 	public static void main(String[] args) {
-//		int nbPlace = 5 ;
-//		int nbTransition = 4;
-//		int [] M0 = {1, 0, 0, 0, 0};
-//		int [][] Pre = {{1, 0, 0, 0},{0, 1, 0, 0},{0, 0, 1, 0},{0, 0, 0, 1},{0, 0, 0, 1}} ;
-//		int [][] Post = {{0, 0, 0, 1},{1, 0, 0, 0},{1, 0, 0, 0},{0, 1, 0, 0},{0, 0, 1, 0}};
-//
-//		Rdp rdp = new Rdp(nbPlace, nbTransition, M0, Pre, Post);
-//		rdp.displayRDP();
-//		rdp.saveRdp(rdp, "1erRdp.dat");
+		int nbPlace = 5 ;
+		int nbTransition = 4;
+		int [] M0 = {1, 0, 0, 0, 0};
+		int [][] Pre = {{1, 0, 0, 0},{0, 1, 0, 0},{0, 0, 1, 0},{0, 0, 0, 1},{0, 0, 0, 1}} ;
+		int [][] Post = {{0, 0, 0, 1},{1, 0, 0, 0},{1, 0, 0, 0},{0, 1, 0, 0},{0, 0, 1, 0}};
 
-//		rdp.Generate_Graphe_Marquage_Centralisé();
-
-
-
-		int nbPlace = 4 ; int nbTransition = 4;  int [] M0     = {1,2,0,1};
-		int [][] Pre  = {{1,0,0,0},{0,1,0,0},{0,0,2,0},{0,0,0,2}};
-		int [][] Post = {{0, 0, 1, 0}, {2, 0, 0, 3}, {0, 1, 0, 0}, {0, 1, 0, 0}};
 		Rdp rdp = new Rdp(nbPlace, nbTransition, M0, Pre, Post);
-		rdp.displayRDP(); //Sauvegarder le réseau de Petri dans un fichier «Rdp2.dat»
-		rdp.saveRdp(rdp, "Rdp3.dat");
+		rdp.displayRDP();
+		rdp.saveRdp(rdp, "1erRdp.dat");
+
 		rdp.Generate_Graphe_Marquage_Centralisé();
+
+
+
+//		int nbPlace = 4 ; int nbTransition = 4;  int [] M0     = {1,2,0,1};
+//		int [][] Pre  = {{1,0,0,0},{0,1,0,0},{0,0,2,0},{0,0,0,2}};
+//		int [][] Post = {{0, 0, 1, 0}, {2, 0, 0, 3}, {0, 1, 0, 0}, {0, 1, 0, 0}};
+//		Rdp rdp = new Rdp(nbPlace, nbTransition, M0, Pre, Post);
+//		rdp.displayRDP(); //Sauvegarder le réseau de Petri dans un fichier «Rdp2.dat»
+//		rdp.saveRdp(rdp, "Rdp3.dat");
+//		rdp.Generate_Graphe_Marquage_Centralisé();
 	}
 }
